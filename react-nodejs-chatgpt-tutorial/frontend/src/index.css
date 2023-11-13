@@ -14,7 +14,8 @@
   -webkit-text-size-adjust: 100%;
 }
 
-html, body{
+html,
+body {
   scroll-behavior: smooth;
 }
 
@@ -27,27 +28,27 @@ h1 {
   background-color: #242424;
 }
 
-main{
+main {
   max-width: 800px;
   margin: auto;
 }
 
-p{
+p {
   background-color: darkslategray;
   max-width: 70%;
   padding: 15px;
   border-radius: 50px;
 }
 
-p span{
+p span {
   margin: 5px;
 }
 
-p span:first-child{
+p span:first-child {
   margin-right: 0;
 }
 
-.user_msg{
+.user_msg {
   text-align: right;
   margin-left: 30%;
   display: flex;
@@ -59,13 +60,13 @@ p span:first-child{
   display: none;
 }
 
-form{
+form {
   text-align: center;
   position: sticky;
   bottom: 0;
 }
 
-input{
+input {
   width: 100%;
   height: 40px;
   border: none;
@@ -74,6 +75,6 @@ input{
   background-color: rgb(28, 23, 23);
 }
 
-input:focus{
+input:focus {
   outline: none;
 }
