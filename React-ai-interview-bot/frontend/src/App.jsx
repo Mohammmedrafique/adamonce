@@ -191,13 +191,11 @@
 
 ///code is workinfine but not scrolling
 
-// import ChatApp from "./Components/Chatpage";
-import Dashboard from "./Components/Dashboard";
+import Mainroutes from "./Components/Mainroutes";
 const App = () => {
   return (
     <div>
-      {/* <ChatApp /> */}
-      <Dashboard />
+      <Mainroutes />
     </div>
   );
 };
