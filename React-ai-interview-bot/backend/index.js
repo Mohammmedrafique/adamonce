@@ -19,7 +19,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Constants
-const PORT = process.env.PORT || 3000;
+
 const MODEL_NAME = "gpt-3.5-turbo";
 
 // Routes
