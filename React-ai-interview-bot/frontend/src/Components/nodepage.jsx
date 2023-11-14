@@ -43,7 +43,7 @@ function Nodepage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("http://localhost:8000/node", {
+      fetch("https://wild-pear-panda-tie.cyclic.app/node", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

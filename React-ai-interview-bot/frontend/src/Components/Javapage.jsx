@@ -43,7 +43,7 @@ function Javapage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("http://localhost:8000/java", {
+      fetch("https://wild-pear-panda-tie.cyclic.app/java", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
