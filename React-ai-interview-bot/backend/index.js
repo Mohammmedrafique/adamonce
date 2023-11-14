@@ -2,15 +2,15 @@ import { Configuration, OpenAIApi } from "openai";
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
-const port = 8000;
 app.use(bodyParser.json());
 app.use(cors());
 
 const configuration = new Configuration({
-  organization: "org-4CCVxmMws7yHKiw9SzxTjcBV",
-  apiKey: "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",
+  organization: process.env.OPENAI_ORGANIZATION,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -74,6 +74,6 @@ app.post("/java", async (request, response) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+app.listen(process.env.port, () => {
+  console.log(`listening on port ${process.env.port}`);
 });
