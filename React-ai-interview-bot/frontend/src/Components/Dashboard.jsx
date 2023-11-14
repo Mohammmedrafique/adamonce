@@ -146,9 +146,11 @@ const Dashboard = () => {
                 A JavaScript library for building user interfaces. We create
                 interactive and dynamic web applications using React.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full mt-4">
-                Start Interview
-              </button>
+              <Link to="/chatpage">
+                <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full mt-4">
+                  Start Interview
+                </button>
+              </Link>
             </div>
 
             {/* Node.js Card */}
@@ -156,10 +158,9 @@ const Dashboard = () => {
               <h3 className="text-xl font-semibold mb-2">Node.js</h3>
               <p>
                 An open-source, cross-platform JavaScript runtime environment
-                that executes JavaScript code server-side. We build scalable and
-                efficient server-side applications with Node.js.
+                that executes JavaScript code server-side. We build scalable applications with Node.js.
               </p>
-              <Link to="/chatpage">
+              <Link to="/nodepage">
                 <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full mt-4">
                   Start Interview
                 </button>
@@ -174,9 +175,11 @@ const Dashboard = () => {
                 developers create robust and scalable applications to meet your
                 business needs.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full mt-4">
-                Start Interview
-              </button>
+              <Link to="/javapage">
+                <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full mt-4">
+                  Start Interview
+                </button>
+              </Link>
             </div>
           </div>
         </div>

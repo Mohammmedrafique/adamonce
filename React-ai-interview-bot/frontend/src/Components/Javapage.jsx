@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-function Chatpage() {
+function Javapage() {
   const [message, setMessage] = useState("");
   const [chats, setChats] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -43,7 +43,7 @@ function Chatpage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("http://localhost:8000/", {
+      fetch("http://localhost:8000/java", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function Chatpage() {
   return (
     <main className="max-w-screen-md mx-auto p-6 flex flex-col h-screen">
       <h1 className="text-center font-extrabold text-2xl">
-        Welcome AI virtual React Interview 
+        Welcome AI virtual Java Interview
       </h1>
       <section
         ref={chatContainerRef}
@@ -134,4 +134,4 @@ function Chatpage() {
   );
 }
 
-export default Chatpage;
+export default Javapage;
