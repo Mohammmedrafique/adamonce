@@ -19,7 +19,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Constants
-
 const MODEL_NAME = "gpt-3.5-turbo";
 
 // Routes
@@ -61,6 +60,6 @@ app.post("/java", async (request, response) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}`);
 });
