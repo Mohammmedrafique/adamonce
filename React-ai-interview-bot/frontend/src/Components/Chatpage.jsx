@@ -187,7 +187,7 @@ function Chatpage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Origin: "http://127.0.0.1:5173",
+            Origin: "https://adamonce.vercel.app",
           },
           body: JSON.stringify({
             chats,
