@@ -9,13 +9,6 @@ dotenv.config();
 const app = express();
 
 // Middleware
-// Enable CORS for all routes
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5174");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -26,6 +19,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Constants
+const PORT = process.env.PORT || 5000;
 const MODEL_NAME = "gpt-3.5-turbo";
 
 // Routes
@@ -53,8 +47,11 @@ const handleChatRequest = async (request, response, expertType) => {
     response.status(500).json({ error: "Internal Server Error" });
   }
 };
+app.get("/", (request, response) => {
+  response.send("Hello, this is the root path!");
+});
 
-app.post("/", async (request, response) => {
+app.post("/react", async (request, response) => {
   await handleChatRequest(request, response, "frontend");
 });
 
@@ -67,6 +64,6 @@ app.post("/java", async (request, response) => {
 });
 
 // Start the server
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
 });
