@@ -43,7 +43,7 @@ function Javapage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("https://wild-pear-panda-tie.cyclic.app/java", {
+      fetch("https://cooperative-tick-overshirt.cyclic.app/java", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,19 @@ function Javapage() {
       })
         .then((response) => response.json())
         .then((data) => {
-          msgs.push({ role: "ai", content: data.output });
+          const apiResponse = data.output;
+
+          if (
+            typeof apiResponse === "object" &&
+            "role" in apiResponse &&
+            "content" in apiResponse
+          ) {
+            msgs.push(apiResponse);
+          } else {
+            console.error("Invalid API response structure:", apiResponse);
+            // Handle the unexpected API response structure accordingly
+          }
+
           setChats(msgs);
           setIsTyping(false);
         })
@@ -83,7 +95,7 @@ function Javapage() {
       <section
         ref={chatContainerRef}
         className="flex-grow overflow-y-auto mb-4"
-        style={{ maxHeight: "calc(100% - 60px)" }} // Adjusted height for the chat container
+        style={{ maxHeight: "calc(100% - 60px)" }}
       >
         {chats.map((chat, index) => (
           <div

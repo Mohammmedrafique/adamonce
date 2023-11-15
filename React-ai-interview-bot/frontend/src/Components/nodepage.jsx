@@ -43,7 +43,7 @@ function Nodepage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("https://wild-pear-panda-tie.cyclic.app/node", {
+      fetch("https://cooperative-tick-overshirt.cyclic.app/node", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,19 @@ function Nodepage() {
       })
         .then((response) => response.json())
         .then((data) => {
-          msgs.push({ role: "ai", content: data.output });
+          const apiResponse = data.output;
+
+          if (
+            typeof apiResponse === "object" &&
+            "role" in apiResponse &&
+            "content" in apiResponse
+          ) {
+            msgs.push(apiResponse);
+          } else {
+            console.error("Invalid API response structure:", apiResponse);
+            // Handle the unexpected API response structure accordingly
+          }
+
           setChats(msgs);
           setIsTyping(false);
         })
@@ -78,12 +90,12 @@ function Nodepage() {
   return (
     <main className="max-w-screen-md mx-auto p-6 flex flex-col h-screen">
       <h1 className="text-center font-extrabold text-2xl">
-        Welcome AI virtual Nodejs Interview
+        Welcome AI virtual Node Interview
       </h1>
       <section
         ref={chatContainerRef}
         className="flex-grow overflow-y-auto mb-4"
-        style={{ maxHeight: "calc(100% - 60px)" }} // Adjusted height for the chat container
+        style={{ maxHeight: "calc(100% - 60px)" }}
       >
         {chats.map((chat, index) => (
           <div

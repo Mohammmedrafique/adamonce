@@ -1,140 +1,141 @@
-// import { useState, useEffect, useRef } from "react";
+// // import { useState, useEffect, useRef } from "react";
 
-// function Chatpage() {
-//   const [message, setMessage] = useState("");
-//   const [chats, setChats] = useState([]);
-//   const [isTyping, setIsTyping] = useState(false);
-//   const [recognition, setRecognition] = useState(null);
-//   const chatContainerRef = useRef(null);
+// // function Chatpage() {
+// //   const [message, setMessage] = useState("");
+// //   const [chats, setChats] = useState([]);
+// //   const [isTyping, setIsTyping] = useState(false);
+// //   const [recognition, setRecognition] = useState(null);
+// //   const chatContainerRef = useRef(null);
 
-//   useEffect(() => {
-//     const SpeechRecognition =
-//       window.SpeechRecognition || window.webkitSpeechRecognition;
+// //   useEffect(() => {
+// //     const SpeechRecognition =
+// //       window.SpeechRecognition || window.webkitSpeechRecognition;
 
-//     if (SpeechRecognition) {
-//       const recognition = new SpeechRecognition();
-//       recognition.continuous = false;
-//       recognition.interimResults = false;
+// //     if (SpeechRecognition) {
+// //       const recognition = new SpeechRecognition();
+// //       recognition.continuous = false;
+// //       recognition.interimResults = false;
 
-//       recognition.onresult = (event) => {
-//         const transcript = event.results[0][0].transcript;
-//         setMessage(transcript);
-//         sendMessage(transcript);
-//       };
+// //       recognition.onresult = (event) => {
+// //         const transcript = event.results[0][0].transcript;
+// //         setMessage(transcript);
+// //         sendMessage(transcript);
+// //       };
 
-//       setRecognition(recognition);
-//     } else {
-//       console.error("SpeechRecognition is not supported in this browser");
-//     }
-//   }, []);
+// //       setRecognition(recognition);
+// //     } else {
+// //       console.error("SpeechRecognition is not supported in this browser");
+// //     }
+// //   }, []);
 
-//   useEffect(() => {
-//     // Scroll to the bottom when chat updates
-//     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-//   }, [chats]);
+// //   useEffect(() => {
+// //     // Scroll to the bottom when chat updates
+// //     chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+// //   }, [chats]);
 
-//   const sendMessage = (msg, role = "user") => {
-//     setIsTyping(true);
+// //   const sendMessage = (msg, role = "user") => {
+// //     setIsTyping(true);
 
-//     let msgs = [...chats];
-//     msgs.push({ role, content: msg });
-//     setChats(msgs);
+// //     let msgs = [...chats];
+// //     msgs.push({ role, content: msg });
+// //     setChats(msgs);
 
-//     setMessage("");
+// //     setMessage("");
 
-//     if (role === "user") {
-//       fetch("https://wild-pear-panda-tie.cyclic.app/", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           chats,
-//         }),
-//       })
-//         .then((response) => response.json())
-//         .then((data) => {
-//           msgs.push({ role: "ai", content: data.output });
-//           setChats(msgs);
-//           setIsTyping(false);
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//         });
-//     }
-//   };
+// //     if (role === "user") {
+// //       fetch("http://localhost:8000/", {
+// //         method: "POST",
+// //         headers: {
+// //           "Content-Type": "application/json",
+// //         },
+// //         body: JSON.stringify({
+// //           chats,
+// //         }),
+// //       })
+// //         .then((response) => response.json())
+// //         .then((data) => {
+// //           msgs.push({ role: "ai", content: data.output });
+// //           setChats(msgs);
+// //           setIsTyping(false);
+// //         })
+// //         .catch((error) => {
+// //           console.log(error);
+// //         });
+// //     }
+// //   };
 
-//   const startSpeechRecognition = () => {
-//     if (recognition) {
-//       recognition.start();
-//     }
-//   };
+// //   const startSpeechRecognition = () => {
+// //     if (recognition) {
+// //       recognition.start();
+// //     }
+// //   };
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     sendMessage(message);
-//   };
+// //   const handleSubmit = (e) => {
+// //     e.preventDefault();
+// //     sendMessage(message);
+// //   };
 
-//   return (
-//     <main className="max-w-screen-md mx-auto p-6 flex flex-col h-screen">
-//       <h1 className="text-center font-extrabold text-2xl">
-//         Welcome AI virtual React Interview
-//       </h1>
-//       <section
-//         ref={chatContainerRef}
-//         className="flex-grow overflow-y-auto mb-4"
-//         style={{ maxHeight: "calc(100% - 60px)" }} // Adjusted height for the chat container
-//       >
-//         {chats.map((chat, index) => (
-//           <div
-//             key={index}
-//             className={`text-white p-2 rounded-lg mb-2 ${
-//               chat.role === "user" ? "bg-blue-500 ml-auto" : "bg-green-500"
-//             }`}
-//           >
-//             <span className="font-bold uppercase">{chat.role}</span>
-//             <span className="mx-2">:</span>
-//             <span>{chat.content}</span>
-//           </div>
-//         ))}
-//       </section>
+// //   return (
+// //     <main className="max-w-screen-md mx-auto p-6 flex flex-col h-screen">
+// //       <h1 className="text-center font-extrabold text-2xl">
+// //         Welcome AI virtual React Interview
+// //       </h1>
+// //       <section
+// //         ref={chatContainerRef}
+// //         className="flex-grow overflow-y-auto mb-4"
+// //         style={{ maxHeight: "calc(100% - 60px)" }} // Adjusted height for the chat container
+// //       >
+// //         {chats.map((chat, index) => (
+// //           <div
+// //             key={index}
+// //             className={`text-white p-2 rounded-lg mb-2 ${
+// //               chat.role === "user" ? "bg-blue-500 ml-auto" : "bg-green-500"
+// //             }`}
+// //           >
+// //             <span className="font-bold uppercase">{chat.role}</span>
+// //             <span className="mx-2">:</span>
+// //             <span>{chat.content}</span>
+// //           </div>
+// //         ))}
+// //       </section>
 
-//       <div className={`mb-4 ${isTyping ? "" : "hidden"}`}>
-//         <p>
-//           <i>{isTyping ? "Typing..." : ""}</i>
-//         </p>
-//       </div>
+// //       <div className={`mb-4 ${isTyping ? "" : "hidden"}`}>
+// //         <p>
+// //           <i>{isTyping ? "Typing..." : ""}</i>
+// //         </p>
+// //       </div>
 
-//       <section>
-//         <form onSubmit={handleSubmit} className="flex items-center">
-//           <input
-//             type="text"
-//             name="message"
-//             value={message}
-//             placeholder="Type a message here and hit Enter..."
-//             onChange={(e) => setMessage(e.target.value)}
-//             className="flex-grow border border-gray-300 p-2 rounded-l focus:outline-none"
-//           />
-//           <button
-//             type="submit"
-//             className="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 focus:outline-none"
-//           >
-//             Submit
-//           </button>
-//           <button
-//             type="button"
-//             onClick={startSpeechRecognition}
-//             className="bg-green-500 text-white p-2 rounded-r hover:bg-green-600 focus:outline-none"
-//           >
-//             🎤
-//           </button>
-//         </form>
-//       </section>
-//     </main>
-//   );
-// }
+// //       <section>
+// //         <form onSubmit={handleSubmit} className="flex items-center">
+// //           <input
+// //             type="text"
+// //             name="message"
+// //             value={message}
+// //             placeholder="Type a message here and hit Enter..."
+// //             onChange={(e) => setMessage(e.target.value)}
+// //             className="flex-grow border border-gray-300 p-2 rounded-l focus:outline-none"
+// //           />
+// //           <button
+// //             type="submit"
+// //             className="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600 focus:outline-none"
+// //           >
+// //             Submit
+// //           </button>
+// //           <button
+// //             type="button"
+// //             onClick={startSpeechRecognition}
+// //             className="bg-green-500 text-white p-2 rounded-r hover:bg-green-600 focus:outline-none"
+// //           >
+// //             🎤
+// //           </button>
+// //         </form>
+// //       </section>
+// //     </main>
+// //   );
+// // }
 
-// export default Chatpage;
+// // export default Chatpage;
+
 import { useState, useEffect, useRef } from "react";
 
 function Chatpage() {
@@ -142,7 +143,6 @@ function Chatpage() {
   const [chats, setChats] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [recognition, setRecognition] = useState(null);
-  const [isListening, setIsListening] = useState(false);
   const chatContainerRef = useRef(null);
 
   useEffect(() => {
@@ -181,15 +181,19 @@ function Chatpage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("https://wild-pear-panda-tie.cyclic.app/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chats,
-        }),
-      })
+      fetch(
+        "https://cors-anywhere.herokuapp.com/https://cooperative-tick-overshirt.cyclic.app/react",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: "http://127.0.0.1:5173",
+          },
+          body: JSON.stringify({
+            chats,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           const apiResponse = data.output;
@@ -215,16 +219,8 @@ function Chatpage() {
   };
 
   const startSpeechRecognition = () => {
-    if (recognition && !isListening) {
+    if (recognition) {
       recognition.start();
-      setIsListening(true);
-    }
-  };
-
-  const stopSpeechRecognition = () => {
-    if (recognition && isListening) {
-      recognition.stop();
-      setIsListening(false);
     }
   };
 
@@ -281,14 +277,10 @@ function Chatpage() {
           </button>
           <button
             type="button"
-            onClick={
-              isListening ? stopSpeechRecognition : startSpeechRecognition
-            }
-            className={`${
-              isListening ? "bg-red-500" : "bg-green-500"
-            } text-white p-2 rounded-r hover:bg-red-600 focus:outline-none`}
+            onClick={startSpeechRecognition}
+            className="bg-green-500 text-white p-2 rounded-r hover:bg-green-600 focus:outline-none"
           >
-            {isListening ? "🔴" : "🎤"}
+            🎤
           </button>
         </form>
       </section>
