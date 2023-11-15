@@ -43,15 +43,19 @@ function Nodepage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("https://cooperative-tick-overshirt.cyclic.app/node", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          chats,
-        }),
-      })
+      fetch(
+        "https://cors-anywhere.herokuapp.com/https://cooperative-tick-overshirt.cyclic.app/node",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Origin: "https://adamonce.vercel.app",
+          },
+          body: JSON.stringify({
+            chats,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           const apiResponse = data.output;

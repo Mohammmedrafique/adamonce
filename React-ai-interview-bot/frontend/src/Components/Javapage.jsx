@@ -43,10 +43,11 @@ function Javapage() {
     setMessage("");
 
     if (role === "user") {
-      fetch("https://cooperative-tick-overshirt.cyclic.app/java", {
+      fetch("https://cors-anywhere.herokuapp.com/https://cooperative-tick-overshirt.cyclic.app/java", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Origin: "https://adamonce.vercel.app",
         },
         body: JSON.stringify({
           chats,
